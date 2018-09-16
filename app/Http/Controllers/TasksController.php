@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 
 use App\Task;
 
+use App\Http\Controllers\Controller;
+
+
+
 class TasksController extends Controller
 {
     /**
@@ -54,7 +58,7 @@ class TasksController extends Controller
         $task->content = $request->content;
         $task->save();
         
-        return redirect('/');
+        return redirect('/home');
     }
 
     /**
