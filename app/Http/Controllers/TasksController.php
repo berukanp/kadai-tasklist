@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Task;
 
+use App\User;
+
 use App\Http\Controllers\Controller;
 
 
@@ -19,11 +21,18 @@ class TasksController extends Controller
      */
     public function index()
     {
-         $tasks = Task::all();
-
-        return view('tasks.index', [
+         if (\Auth::check()) {
+             
+        $user = \Auth::user();
+        $tasks = Task::all();
+            return view('tasks.index', [
             'tasks' => $tasks,
         ]);
+
+        }else {
+            return view('welcome');
+        }
+        
     }
 
     /**
@@ -127,4 +136,8 @@ class TasksController extends Controller
 
         return redirect('/');
     }
+    
+    
+    
+    
 }
